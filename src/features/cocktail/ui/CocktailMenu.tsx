@@ -1,26 +1,26 @@
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAppDispatch } from '../../../app/store';
+import { MENU_ITEMS } from '../../../shared/config/menu';
 import { getCocktail } from '../model/cocktailSlice';
-
-const menuItems = ['margarita', 'mojito', 'a1', 'kir'];
+import styles from './CocktailMenu.module.scss';
 
 export const CocktailMenu = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(getCocktail('margarita'));
+    dispatch(getCocktail(MENU_ITEMS[0]));
   }, [dispatch]);
 
   return (
-    <nav>
-      <ul>
-        {menuItems.map((item) => (
+    <nav className={styles['nav']}>
+      <ul className={styles['menu-list']}>
+        {MENU_ITEMS.map((item) => (
           <li key={item}>
             <NavLink
               to={`/${item}`}
               className={({ isActive }) =>
-                isActive ? 'active-menu-item' : 'menu-item'
+                isActive ? styles['active-menu-item'] : styles['menu-item']
               }
             >
               {item}
@@ -28,26 +28,6 @@ export const CocktailMenu = () => {
           </li>
         ))}
       </ul>
-      {/* <style jsx>{`
-        .menu-item {
-          text-decoration: none;
-          color: black;
-          padding: 8px 16px;
-          display: block;
-          transition: color 0.3s ease, background-color 0.3s ease;
-        }
-        .active-menu-item {
-          color: white;
-          background-color: #007bff;
-        }
-        ul {
-          list-style: none;
-          padding: 0;
-        }
-        li {
-          margin: 4px 0;
-        }
-      `}</style> */}
     </nav>
   );
 };

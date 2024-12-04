@@ -1,9 +1,8 @@
-export const fetchCocktailByCode = async (code: string) => {
+const API_URL = import.meta.env.VITE_COCKTAIL_API_URL;
+
+export const getCocktailByCode = async (code: string) => {
   const response = await fetch(
-    `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${code}`
+    `${API_URL}/search.php?s=${encodeURIComponent(code)}`
   );
-  if (!response.ok) {
-    throw new Error('Failed to fetch cocktails');
-  }
-  return await response.json();
+  return response.json();
 };

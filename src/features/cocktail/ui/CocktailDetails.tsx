@@ -1,26 +1,30 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import LazyLoad from 'react-lazyload';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/store';
 import { getCocktail } from '../model/cocktailSlice';
+import { Cocktail } from '../model/types';
 
-export const CocktailDetails = () => {
-  const cocktails = useAppSelector((state) => state.cocktail.cocktails);
-  const status = useAppSelector((state) => state.cocktail.status);
+export const CocktailDetails: React.FC = () => {
+  const { cocktailCode } = useParams<{ cocktailCode: string }>();
   const dispatch = useAppDispatch();
-  const { cocktailCode } = useParams();
+  const cocktail = useAppSelector((state) =>
+    cocktailCode
+      ? (state.cocktail.cocktails[cocktailCode] as unknown as Cocktail)
+      : undefined
+  );
+  const status = useAppSelector((state) => state.cocktail.status);
+  const error = useAppSelector((state) => state.cocktail.error);
 
   useEffect(() => {
-    if (cocktailCode) {
+    if (cocktailCode && !cocktail && status !== 'loading') {
       dispatch(getCocktail(cocktailCode));
     }
-  }, [cocktailCode, dispatch]);
+  }, [cocktailCode, cocktail, status, dispatch]);
 
   if (status === 'loading') return <p>Loading...</p>;
-  if (status === 'failed') return <p>Error loading cocktail</p>;
-  // TODO: create model
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const cocktail = (cocktails as any).drinks?.[0];
+  if (status === 'failed') return <p>Error: {error}</p>;
+  if (!cocktail) return null;
 
   return (
     <div>
