@@ -5,6 +5,7 @@ import { NotFoundPage } from '../../features/cocktail/ui/NotFoundPage/NotFoundPa
 import { DEFAULT_COCKTAIL } from '../../shared/config/menu';
 import { ValidateRoute } from '../../shared/ui/ValidateRoute';
 import styles from './HomePage.module.scss';
+
 export const HomePage = () => {
   return (
     <main className={styles.main}>
