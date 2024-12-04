@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_COCKTAIL_API_URL;
+import { API_URL } from '../../../shared/config/api';
 
 export const getCocktailByCode = async (code: string) => {
   const response = await fetch(
