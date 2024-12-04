@@ -1,0 +1,12 @@
+.main {
+    display: flex;
+  
+    .menu {
+      flex: 0 0 200px; 
+      position: static;
+    }
+  
+    .content {
+      flex: 1; 
+    }
+  }

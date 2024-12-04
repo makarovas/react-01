@@ -1,5 +1,10 @@
 .nav {
-  display: flex;
+   display: flex;
+   position: absolute;
+   width: 220px;
+   top: 0;
+   bottom: 0;
+   overflow: auto;
 }
 
 .menu-item {
