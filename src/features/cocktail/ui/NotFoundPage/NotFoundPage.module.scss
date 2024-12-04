@@ -34,3 +34,17 @@
       }
     }
   }
+
+.container {
+  max-width: 1024px;
+  min-width: 360px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+}

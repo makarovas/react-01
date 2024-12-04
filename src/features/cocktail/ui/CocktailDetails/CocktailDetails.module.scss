@@ -1,8 +1,10 @@
-.container {
-  padding: 20px;
-}
+.header {
+    margin-top: 16px;
+  }
 
-.image {
-  max-width: 100%;
-  border-radius: 8px;
-} 
+
+  @media (max-width: 768px) {
+    .header {
+        margin-top: 90px;
+      }
+  }

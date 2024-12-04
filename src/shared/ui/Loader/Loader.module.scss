@@ -1,0 +1,19 @@
+.loader {
+  max-width: 1024px;
+  min-width: 360px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .loader {
+    padding: 16px;
+  }
+} 
